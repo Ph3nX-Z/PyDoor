@@ -1,3 +1,4 @@
+#created by Ph3nX-Z : https://github.com/Ph3nX-Z
 ip_re=""
 import time
 def read(): #read file (first line)
