@@ -9,5 +9,5 @@ _USAGE :_
 
 	*First, you have to use the generator, to crypt the ip (generate the ip.txt file or just crypt an ip).
 	*Then put the ip in a ip.txt (only if you have choosen the option number 2) file and send it with the client file to the victim.
-	*Open the server file (exe or py) and wait for the victim click on the backdoor.
+	*Open the server file (exe or py) and wait that the victim click on the backdoor.
 
