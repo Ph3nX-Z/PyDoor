@@ -25,7 +25,7 @@ for numero in temp:
 
         
 if choice!=1:
-    print("your crypted ip is : ",ip_re)
+    print("your encoded ip is : ",ip_re)
     time.sleep(7)
     
 else:
